@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId 'uk.co.imagitech.robolectricmultipletestappsissue7494'
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
+
+    // Core library
+    testImplementation("androidx.test:core:${rootProject.ext.androidXTestVersion}")
+
+    //Espresso
+    testImplementation "androidx.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"
+    testImplementation "androidx.test.espresso:espresso-contrib:${rootProject.ext.espressoVersion}"
+    testImplementation "androidx.test.espresso:espresso-intents:${rootProject.ext.espressoVersion}"
+
+    // AndroidJUnitRunner and JUnit Rules
+    testImplementation("androidx.test:runner:${rootProject.ext.testRunnerVersion}")
+    testImplementation("androidx.test:rules:${rootProject.ext.testRulesVersion}")
+
+    //Robolectric
+    testImplementation("org.robolectric:robolectric:${rootProject.ext.robolectricVersion}")
+    testImplementation("org.robolectric:shadows-playservices:${rootProject.ext.robolectricVersion}")
+
+    // Assertions
+    testImplementation("androidx.test.ext:junit:${rootProject.ext.testExtJunitVersion}")
+    testImplementation("androidx.test.ext:truth:${rootProject.ext.truthVersion}")
+
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation("org.mockito:mockito-core:3.12.4")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
